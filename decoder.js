@@ -19,7 +19,8 @@ class Decoder {
             const index = parseInt(element);
             if (index) {
                 const word = element.split(/\s/)[1];
-                dict[index - 1] = word;
+                if (word)
+                    dict[index - 1] = word;
             }
         });
 
@@ -27,7 +28,8 @@ class Decoder {
         let tier, i;
         tier = i = 1;
         while (true) {
-            str += dict[i - 1];
+            if (dict[i - 1])
+                str += dict[i - 1];
             tier++;
             i += tier;
             if (i <= dict.length)
