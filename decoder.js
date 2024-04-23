@@ -9,13 +9,36 @@ class Decoder {
         const form = this.form;
         form.addEventListener("submit", (e) => {
             e.preventDefault();
-            this.parse();
+            this.decode(this.message.value);
         });
     }
-    parse() {
-        this.drawer();
+    decode(message) {
+        const stringsArr = message.split(/\r\n|\r|\n/);
+        const dict = [];
+        stringsArr.forEach(element => {
+            const index = parseInt(element);
+            if (index) {
+                const word = element.split(/\s/)[1];
+                dict[index - 1] = word;
+            }
+        });
+
+        let str = "";
+        let tier, i;
+        tier = i = 1;
+        while (true) {
+            str += dict[i - 1];
+            tier++;
+            i += tier;
+            if (i <= dict.length)
+                str += " ";
+            else
+                break;
+        }
+
+        this.showAnswer(str);
     }
-    drawer() {
-        this.output.textContent = this.message.value;
+    showAnswer(str) {
+        this.output.textContent = str;
     }
 }
