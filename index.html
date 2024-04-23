@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decode message staircase</title>
+    <script src="./decoder.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <form id="form">
+        <label for="message">
+            Staircase encrypted message
+        </label>
+        <textarea name="message" id="message" cols="30" rows="10">
+        </textarea>
+        <input type="submit" value="Decode" />
+    </form>
+    <h2 id="output"></h2>
+    <script>
+        window.onload = () => new Decoder({
+            form: document.getElementById('form'),
+            message: document.getElementById('message'),
+            output: document.getElementById('output')
+        });
+    </script>
+</body>
+
+</html>
